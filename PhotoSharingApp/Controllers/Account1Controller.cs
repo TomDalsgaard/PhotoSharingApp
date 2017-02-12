@@ -13,16 +13,16 @@ using PhotoSharingApp.Models;
 namespace PhotoSharingApp.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class Account1Controller : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public Account1Controller()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public Account1Controller(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -53,7 +53,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/Login
+        // GET: /Account1/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -62,7 +62,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/Login
+        // POST: /Account1/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -92,7 +92,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/VerifyCode
+        // GET: /Account1/VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
@@ -105,7 +105,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/VerifyCode
+        // POST: /Account1/VerifyCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -135,7 +135,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account1/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -143,7 +143,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account1/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -163,7 +163,7 @@ namespace PhotoSharingApp.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home1");
                 }
                 AddErrors(result);
             }
@@ -173,7 +173,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/ConfirmEmail
+        // GET: /Account1/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -186,7 +186,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/ForgotPassword
+        // GET: /Account1/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -194,7 +194,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/ForgotPassword
+        // POST: /Account1/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -222,7 +222,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/ForgotPasswordConfirmation
+        // GET: /Account1/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
@@ -230,7 +230,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/ResetPassword
+        // GET: /Account1/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
@@ -238,7 +238,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/ResetPassword
+        // POST: /Account1/ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -252,19 +252,19 @@ namespace PhotoSharingApp.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("ResetPasswordConfirmation", "Account1");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("ResetPasswordConfirmation", "Account1");
             }
             AddErrors(result);
             return View();
         }
 
         //
-        // GET: /Account/ResetPasswordConfirmation
+        // GET: /Account1/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
@@ -272,18 +272,18 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/ExternalLogin
+        // POST: /Account1/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account1", new { ReturnUrl = returnUrl }));
         }
 
         //
-        // GET: /Account/SendCode
+        // GET: /Account1/SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
@@ -298,7 +298,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/SendCode
+        // POST: /Account1/SendCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -318,7 +318,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // GET: /Account/ExternalLoginCallback
+        // GET: /Account1/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -348,7 +348,7 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/ExternalLoginConfirmation
+        // POST: /Account1/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -386,17 +386,17 @@ namespace PhotoSharingApp.Controllers
         }
 
         //
-        // POST: /Account/LogOff
+        // POST: /Account1/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home1");
         }
 
         //
-        // GET: /Account/ExternalLoginFailure
+        // GET: /Account1/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
@@ -449,7 +449,7 @@ namespace PhotoSharingApp.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home1");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -1,56 +1,39 @@
 ﻿@model PhotoSharingApp.Models.Photo
 
 @{
-    ViewBag.Title = "Display";
+    Layout = null;
 }
 
-<h2>Display</h2>
+<!DOCTYPE html>
 
-<fieldset>
-    <legend>Photo</legend>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.Title</title>
+</head>
+<body>
+    <div>
+        <h2>"@Model.Title"</h2>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Title)
+        <img width="800" src="@Url.Action("GetImage", "Photo", new { id = Model.PhotoID })" />
 
-    </div>
+        <p>
+            @Html.DisplayFor(model => model.Description)
+        </p>
 
-    @if (Model.PhotoFile != null)
-    {
-        <img width="800" src="@Url.Action("GetImage", "Photo", new { id=Model.PhotoID })" />
-    }
+        <p>
+            @Html.DisplayNameFor(model => model.UserName):
+            @Html.DisplayFor(model => model.UserName)
+        </p>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ImageMimeType)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageMimeType)
-    </div>
+        <p>
+            @Html.DisplayNameFor(model => model.CreatedDate):
+            @Html.DisplayFor(model => model.CreatedDate)
+        </p>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CreatedDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CreatedDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.PhotoID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</body>
+</html>

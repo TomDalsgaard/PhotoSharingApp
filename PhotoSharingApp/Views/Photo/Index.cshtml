@@ -1,57 +1,23 @@
-﻿@model IEnumerable<PhotoSharingApp.Models.Photo>
-
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    Layout = null;
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageMimeType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
-    </tr>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All Photos</title>
+</head>
+<body>
+    <div>
+        <h2>All Photos</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageMimeType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhotoID }) |
-            @Html.ActionLink("Display", "Display", new { id=item.PhotoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhotoID })
-        </td>
-    </tr>
-}
+        <p>
+            @Html.ActionLink("Add a Photo", "Create", "Photo")
+        </p>
 
-</table>
+        @Html.Action("_PhotoGallery", "Photo")
+    </div>
+</body>
+</html>
