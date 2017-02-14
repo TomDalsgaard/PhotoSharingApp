@@ -12,7 +12,7 @@
 <body>
     <div>
         <p>Welcome to Adventure Works Photo Sharing! Use this site to share your adventures.</p>
-
+        <p>@Html.ActionLink("Photo", "Index", "Photo")</p>
         <h2>Latest Photos:</h2>
 
         @Html.Action("_PhotoGallery", "Photo", new { number = 3 })
