@@ -9,6 +9,7 @@ using PhotoSharingApp.Models;
 
 namespace PhotoSharingApp.Controllers
 {
+    [HandleError(View = "Error")]
     [ValueReporter]
     public class PhotoController : Controller
     {
@@ -31,7 +32,8 @@ namespace PhotoSharingApp.Controllers
 
         public ActionResult Index()
         {
-            return View("Index", context.Photos.ToList());
+            //return View("Index", context.Photos.ToList());
+            return View("Index");
         }
 
         [ChildActionOnly]
@@ -130,5 +132,11 @@ namespace PhotoSharingApp.Controllers
                 return null;
             }
         }
+
+        public ActionResult SlideShow()
+        {
+            throw new NotImplementedException("The Slideshow action is not yet ready.");
+        }
+
     }
 }
